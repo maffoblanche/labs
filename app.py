@@ -11,12 +11,12 @@ app = Flask(__name__)
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
-# Load the pre-trained model
+# Load the pre-trained model.
 logging.info("Loading the model...")
 model_path = "model/model.pth"
 model = models.resnet18(pretrained=False)
 model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
-model.eval()  # Set model to evaluation mode
+model.eval()  # Set model to evaluation mode.
 
 # Define image preprocessing transforms
 preprocess = transforms.Compose([
@@ -25,7 +25,6 @@ preprocess = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
-
 
 def predict(image_path):
     """
